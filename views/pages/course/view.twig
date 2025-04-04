@@ -1,0 +1,63 @@
+{% extends template('NWIRE_DEV_LEARN_MANAGEMENT_SYSTEM', 'course/partials/main.twig') %}
+
+{% block main_content %}
+    <div class="nwire-dev-learn-management-tool--course d-flex flex-column gap-2 sidebar-mobile-hide h-100">
+        <div class="d-flex flex-column">
+            <div>
+                <div class="d-flex flex-column">
+                    <h1 class="nwire-dev-learn-management-system--course-main-heading">
+                        {{ course.current_lesson.lesson.post_title }}
+                    </h1>
+                </div>
+                <div class="d-flex flex-column gap-3">
+                    <div class="nwire-dev-learn-management-tool--course-breadcrumbs d-none d-xl-flex flex-row justify-content-between py-3 px-4 w-100">
+                        <div class="d-flex gap-2">
+                            <p class="mb-0">
+                                {{ course.course.post_title }}
+                            </p>
+                            <span> > </span>
+                            <p class="mb-0">
+                                {{ course.current_lesson.section.section_name }}
+                            </p>
+                            <span> > </span>
+                            <p class="mb-0">
+                                {{ course.current_lesson.lesson.post_title }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="nwire-dev-learn-management-system--course-content-container d-flex flex-column gap-3 pe-3">
+                        {{ course.current_lesson.lesson.post_content|raw|wpautop }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column gap-1">
+                <hr>
+                <div class="d-flex flex-column flex-xl-row gap-3 gap-xl-3 justify-content-end">
+                    <a href="{{ fn('get_site_url') ~ '/' ~ fn('apply_filters', 'nwire_dev_learn_management_system_route_courses', 'courses')}}"
+                       class="btn nwire-dev--button nwire-dev--button-secondary d-none d-xl-block">
+                        Terug naar cursus overzicht
+                    </a>
+                    {% if course.current_lesson.lesson.ID not in course.course_finished_lessons %}
+                        <a class="btn nwire-dev--button nwire-dev--button-primary"
+                           href="{{ course.url }}?lesson_completed=true">
+                            Les markeren als compleet
+                        </a>
+                    {% endif %}
+                    {% if course.current_lesson.lesson.ID in course.course_finished_lessons and course.course_finished_by_user == false %}
+                        <a class="btn nwire-dev--button nwire-dev--button-primary"
+                           href="{{ course.url }}?next_lesson=true">
+                            Volgende stap
+                        </a>
+                    {% endif %}
+                    {% if course.course_finished_by_user %}
+                        <a class="d-flex justify-content-center btn nwire-dev--button nwire-dev--button-primary"
+                           href="{{ course.url }}?finish_screen=true">
+                            Terug naar afrondingsscherm
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

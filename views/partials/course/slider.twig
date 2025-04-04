@@ -1,0 +1,42 @@
+{% set progress = course.progress %}
+{% set course = course.course %}
+
+<a href="{{ fn('get_site_url') ~ '/' ~ fn('apply_filters', 'nwire_dev_learn_management_system_route_course', 'course') ~ '/' ~ course.post_name }}"
+   style="text-decoration: none">
+    <div class="card nwire-dev-learn-management-system--course-slider" style="
+            background-image:linear-gradient(rgba(20, 18, 18, 0.3), rgba(20, 18, 18, 1)), url('{{ fn('wp_get_attachment_image_src', fn('get_post_thumbnail_id', course.ID), 'full')[0] }}');
+    ">
+        <div class="card-body d-flex justify-content-between flex-column">
+            <div class="d-flex flex-column flex-xxl-row gap-1 gap-xxl-0 justify-content-between">
+                <div class="nwire-dev-learn-management-system--course-slider-categories">
+                    {% set course_categories = fn('get_the_terms', course.ID, 'category') %}
+                    {% for course_category in course_categories %}
+                        <span class="me-2">
+                            {{ course_category.name }}
+                        </span>
+                    {% endfor %}
+                </div>
+                {% if progress %}
+                    <div>
+                        <span class="me-2 nwire-dev-learn-management-system--course-slider-progress">
+                            {{ progress.percentage }}% voltooid
+                        </span>
+                    </div>
+                {% endif %}
+            </div>
+            <div>
+                <h2 class="nwire-dev-learn-management-system--course-slider-title">
+                    {{ course.post_title }}
+                </h2>
+                <div class="nwire-dev-learn-management-system--course-slider-teachers d-flex flex-column flex-md-row gap-1">
+                    {% set teachers = fn('get_the_terms', course.ID, 'teacher') %}
+                    {% for teacher in teachers %}
+                        <p class="mb-0">
+                            {{ teacher.name }} {% if loop.index < teachers|length %}&{% endif %}
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

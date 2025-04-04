@@ -1,0 +1,44 @@
+<style>
+    form > input {
+        margin-top: 12px;
+    }
+
+</style>
+<form method="post">
+    {% for structure in course_structure %}
+        <input type="hidden" name="section[{{ structure.section_id }}][section_id]" value="{{ structure.section_id }}">
+        Sectie
+        <input type="text" name="section[{{ structure.section_id  }}][section_name]"
+                      value="{{ structure.section_name }}">
+        <br/>
+        {% for lesson in structure.lessons %}
+            <input type="hidden" name="section[{{ structure.section_id }}][lessons][{{ lesson.lesson_id }}][lesson_id]" value="{{ lesson.lesson_id }}">
+
+            <input type="text" name="section[{{ structure.section_id }}][lessons][{{ lesson.lesson_id }}][lesson_name]"
+                   value="{{ lesson.lesson_title }}">
+        {% endfor %}
+
+{#        {% if structure.section_id == 1 %}#}
+{#            <input type="hidden" name="section[{{ structure.section_id }}][lessons][not_in_db_yet_1][lesson_id]" value="">#}
+
+{#            <input type="text" name="section[{{ structure.section_id }}][lessons][not_in_db_yet_1][name]"#}
+{#                   value="Hoi hoi hoi">#}
+{#        {% endif %}#}
+
+{#        {% if structure.section_id == 2 %}#}
+{#            <input type="hidden" name="section[{{ structure.section_id }}][lessons][not_in_db_yet_2][lesson_id]" value="">#}
+
+{#            <input type="text" name="section[{{ structure.section_id }}][lessons][not_in_db_yet_2][name]"#}
+{#                   value="Hoi hoi hoi">#}
+
+{#            <input type="hidden" name="section[{{ structure.section_id }}][lessons][not_in_db_yet_3][lesson_id]" value="">#}
+
+{#            <input type="text" name="section[{{ structure.section_id }}][lessons][not_in_db_yet_3][name]"#}
+{#                   value="Hoi hoi hoi">#}
+{#        {% endif %}#}
+
+        <br/>
+        <br/>
+    {% endfor %}
+    <input type="submit" name="save_course" class="button button-primary button-large" value="Opslaan">
+</form>

@@ -1,0 +1,179 @@
+:root {
+    --navbar-height: 93.5px;
+    --sidebar-width: 320px;
+}
+
+nav {
+    grid-area: navbar;
+    position: sticky;
+    top: 0;
+    height: auto;
+    width: 98.8vw;
+    z-index: 99999999999999;
+    background: white;
+
+    & a {
+        color: black;
+    }
+}
+
+body {
+    max-height: 100dvh;
+    grid-template-areas:
+    "navbar navbar"
+    "sidebar main"
+    "footer footer";
+}
+
+main {
+    width: auto;
+}
+
+aside {
+    grid-area: sidebar;
+    position: fixed;
+    align-self: start;
+    width: 100vw;
+    top: 109px;
+    margin-left: -100vw;
+    min-height: calc(100dvh - var(--navbar-height));
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    height: calc(100dvh - 96.5px);
+    background: white;
+}
+
+@media (min-width: 1399px) {
+    aside {
+        top: var(--navbar-height);
+        width: var(--sidebar-width) !important;
+        height: calc(100dvh - var(--navbar-height));
+        margin: 0;
+    }
+
+    body {
+        display: grid;
+        grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+        grid-template-rows: var(--navbar-height) minmax(0, 1fr);
+    }
+}
+
+.nwire-dev-learn-management-tool--course-breadcrumbs {
+    background: #ffe26e7d;
+}
+
+.nwire-dev-learn-management-system--course-main-container {
+    width: 100%;
+
+    & p, & a, & span {
+        color: black;
+    }
+}
+
+.nwire-dev-learn-management-system--course-content-container {
+    height: 60dvh;
+    max-height: 60dvh;
+    overflow-y: auto;
+}
+
+@media (min-width: 1399px) {
+    .nwire-dev-learn-management-system--course-main-container {
+        margin-left: 18em;
+        height: 750px !important;
+        width: 1080px;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+
+    .nwire-dev-learn-management-system--course-content-container {
+        max-height: 500px;
+        height: 500px;
+    }
+}
+
+.nwire-dev-learn-management-system--course-content-container p {
+    overflow-wrap: break-word;
+}
+
+.nwire-dev-learn-management-system--course-content-container > iframe,
+.nwire-dev-learn-management-system--course-content-container > p > iframe {
+    height: 434px;
+    min-height: 418px;
+    width: 100%;
+}
+
+@media (min-width: 1399px) {
+    .nwire-dev-learn-management-system--course-content-container > iframe,
+    .nwire-dev-learn-management-system--course-content-container > p > iframe {
+        height: 475px;
+    }
+}
+
+.nwire-dev-learn-management-system--course-sidebar-sections {
+    max-height: calc(100dvh - var(--navbar-height));
+    padding-bottom: 80px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-right: 0;
+}
+
+.nwire-dev-learn-management-system--course-sidebar-section-lesson-active {
+    background: #ffe26e;
+}
+
+.nwire-dev-learn-management-tool--sidebar a {
+    color: black;
+}
+
+.nwire-dev-learn-management-system--course-main-heading {
+    font-size: clamp(1.8rem, 3vw, 3rem);
+}
+
+.nwire-dev-learn-management-system--course-component-steps {
+
+}
+
+.nwire-dev-learn-management-system--course-component-steps-percentage {
+    font-size: 19px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: KanitMedium;
+}
+
+.nwire-dev-learn-management-system--course-component-steps-count {
+    font-size: 19px;
+}
+
+.sidebar-toggled {
+    display: block !important;
+    margin-left: 0 !important;
+}
+
+@media (min-width: 1399px) {
+    .sidebar-toggled {
+        margin-left: inherit !important;
+        width: inherit !important;
+    }
+
+    .nwire-dev-learn-management-system--course-navigation-first-column {
+        width: 320px;
+    }
+}
+
+.nwire-dev-learn-management-system--course-component-steps-progress-bar {
+    background: black;
+}
+
+.swiper-wrapper {
+    width: 100dvw;
+}
+
+.swiper-pagination {
+    position: relative;
+    margin-top: 16px;
+}
+
+.swiper-pagination-bullet-active {
+    background: black !important;
+}

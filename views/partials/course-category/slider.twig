@@ -1,0 +1,11 @@
+<a href="{{ fn('get_site_url') ~ '/' ~ fn('apply_filters', 'nwire_dev_learn_management_system_route_category', 'category') ~ '/' ~ category.slug }}" style="text-decoration: none">
+    <div class="card" style="border: 1px solid black; height: 250px;">
+        <div class="card-body d-flex justify-content-center align-items-center flex-column">
+            <div>
+                <h2 style="color: black; text-decoration: none; text-underline: none; margin-bottom: 4px">
+                    {{ category.name }}
+                </h2>
+            </div>
+        </div>
+    </div>
+</a>

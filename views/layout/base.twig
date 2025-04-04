@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+
+{{ fn('wp_enqueue_script', 'swiper') }}
+
+{% include 'html-header.twig' %}
+
+{{ fn('wp_enqueue_style', 'swiper') }}
+{{ fn('wp_enqueue_style', 'learn-management-system-index') }}
+
+<body class="{{ body_class }}">
+
+{% block main %}
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+{% endblock %}
+
+{% include 'html-footer.twig' %}
+</body>
+</html>

@@ -1,0 +1,85 @@
+<aside class="border-end ">
+    <div class="container-fluid mx-0 px-0 nwire-dev-learn-management-tool--sidebar" style="left: -100vw">
+        <div class="row w-100">
+            <div class="col-12 px-0">
+                <div class="row flex-column flex-nowrap">
+                    <div class="col-12 pe-0 py-0 pe-lg-2 py-lg-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="ps-5">
+                                {{ course.title }}
+                            </div>
+                            <button
+                                    class="bg-transparent border-0 px-2 py-3 nwire-dev-learn-management-system--sidebar-toggle d-none d-xxl-block"
+                                    data-icon-expand="{{ asset('NWIRE_DEV_LEARN_MANAGEMENT_SYSTEM', 'img/arrow-right.svg') }}"
+                                    data-icon-minify="{{ asset('NWIRE_DEV_LEARN_MANAGEMENT_SYSTEM', 'img/arrow-left.svg') }}"
+                            >
+                                <img src="{{ asset('NWIRE_DEV_LEARN_MANAGEMENT_SYSTEM', 'img/arrow-left.svg') }}" height="25" width="25">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 my-0 px-0 border-bottom d-flex d-xxl-none">
+                        <a class="text-decoration-none"
+                           href="{{ fn('get_site_url') ~ '/' ~ fn('apply_filters', 'nwire_dev_learn_management_system_route_courses', 'courses')}}">
+                            <div class="course-sidebar-title px-5 py-4">
+                                <div class="d-flex flex-column justify-content-between">
+                                    <h2 class="h6 mb-0 fw-light">Terug naar cursus overzicht</h2>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="nwire-dev-learn-management-system--course-sidebar-sections">
+                        {% for section in course.course_structure %}
+                            {% set section_id = section.section_id %}
+                            <div class="col-12 my-0 px-0 border-bottom">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#sidebar-accordion{{ section_id }}" aria-expanded="true"
+                                        aria-controls="sidebar-accordion{{ section_id }}"
+                                >
+                                    <div class="course-sidebar-title px-5 py-4">
+                                        <div class="d-flex flex-column justify-content-between">
+                                            <h2 class="h5">{{ section.section_name }}</h2>
+                                            <span class="fst-italic text-muted"
+                                                  style="font-size: 14px">{{ section.lesson_count }} stappen</span>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            {% for lesson in section.lessons %}
+                                <div id="sidebar-accordion{{ section_id }}"
+                                     class="
+                                     col-12 my-0 px-0 border-bottom
+                                     nwire-dev-learn-management-system-course-sidebar-section
+                                    {% if course.current_lesson.section.course_section_id == section.section_id %}
+                                        accordion-collapse collapse show
+                                    {% else %}
+                                        accordion-collapse collapse
+                                    {% endif %}
+                                    {% if course.current_lesson.lesson.id == lesson.lesson_id %}
+                                        nwire-dev-learn-management-system--course-sidebar-section-lesson-active
+                                    {% endif %}
+                                    {% if lesson.lesson_id in course.course_finished_lessons %}
+                                        nwire-dev-learn-management-system-course-sidebar-section-lesson-finished
+                                    {% endif %}
+                                    ">
+                                    <a href="{{ course.url }}?lesson_selected={{ lesson.lesson_id }}"
+                                       class="text-decoration-none">
+                                        <div class="course-sidebar-section-part px-5 py-4">
+                                            <div class="d-flex flex-start align-items-center px-4 gap-1">
+                                                <h3 class="h6 mb-0 fw-light">
+                                                    {{ lesson.lesson_title }}
+                                                    {% if lesson.lesson_id in course.course_finished_lessons %}
+                                                        <span class="dashicons dashicons-yes"></span>
+                                                    {% endif %}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
