@@ -1,0 +1,18 @@
+{% extends "course/partials/main.twig" %}
+
+{% set show_steps = true %}
+
+{% block nav_extends %}
+    {% include 'course/partials/steps.twig' %}
+{% endblock %}
+
+{% block main_content %}
+    <div class="d-flex flex-column gap-3">
+        <h1 class="course--heading">{{ course.course.post_title }}</h1>
+        <p>
+            Ma shaa Allaah, gefeliciteerd met het afmaken van de cursus. Moge Allaah je ervoor belonen.
+        </p>
+    </div>
+
+{% endblock %}
+

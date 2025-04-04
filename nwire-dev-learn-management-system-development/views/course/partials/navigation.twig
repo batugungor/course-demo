@@ -1,0 +1,40 @@
+<nav>
+    <div class="container-fluid border-bottom h-100 py-2">
+        <div class="container">
+            <div class="row h-100">
+                <div class="
+                        nwire-dev-learn-management-system--course-navigation-first-column
+                        col-3 col-xxl-2 d-flex flex-column justify-content-center align-items-start py-4
+                    ">
+                    <a class="text-decoration-none" href="{{ fn('get_home_url') }}">
+                        <h4 class="d-none d-xxl-block mb-0">
+                            <a class="text-decoration-none" href="{{ fn("get_site_url") }}">
+                                <h5 class="fw-bold h4 mb-0">
+                                    {{ fn('get_bloginfo', 'name') }}
+                                </h5>
+                            </a>
+                        </h4>
+                    </a>
+                    <div class="col d-block d-xxl-none">
+                        <button class="btn nwire-dev-learn-management-system--sidebar-toggle">
+                            <img src="{{ asset('NWIRE_DEV_LEARN_MANAGEMENT_SYSTEM', 'img/hamburger-icon.svg') }}" height="30" width="30">
+                        </button>
+                    </div>
+                </div>
+                <div class="col d-none d-xxl-flex ps-5  pe-5  flex-column justify-content-center">
+                    <div class="d-flex flex-row gap-4 me-5 ps-1">
+                        <a class="py-2 text-decoration-none" style="border: 1px solid transparent"
+                           href="{{ fn("get_site_url") }}">
+                            Homepagina
+                        </a>
+                        <a class="py-2 text-decoration-none" style="border: 1px solid transparent"
+                           href="{{ fn('get_site_url') ~ '/' ~ fn('apply_filters', 'nwire_dev_learn_management_system_route_courses', 'courses')}}">
+                            Cursussen
+                        </a>
+                    </div>
+                </div>
+                {% include template('NWIRE_DEV_LEARN_MANAGEMENT_SYSTEM', 'components/steps.twig') with { course: course } %}
+            </div>
+        </div>
+    </div>
+</nav>

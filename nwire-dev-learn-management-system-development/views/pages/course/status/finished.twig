@@ -1,0 +1,27 @@
+{% extends template('NWIRE_DEV_LEARN_MANAGEMENT_SYSTEM', 'course/partials/main.twig') %}
+
+{% set show_steps = true %}
+
+{% block main_content %}
+    <div class="d-flex flex-column gap-3">
+        <h1 class="nwire-dev-learn-management-system--course-main-heading">
+            {{ course.course.post_title }}
+        </h1>
+        <div class="nwire-dev-learn-management-system--course-content-container d-flex flex-column gap-3 pe-3">
+            <div>
+                <p>
+                    Allahumma baarik, gefeliciteerd met het afmaken van de cursus. Moge Allaah je ervoor belonen.
+                </p>
+                <div class="d-flex gap-2">
+                    <p class="mb-0">Volg een andere cursus:</p>
+                    <a href="{{ fn('get_site_url') ~ '/' ~ fn('apply_filters', 'nwire_dev_learn_management_system_route_courses', 'courses')}}">
+                        Cursus overzicht
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+

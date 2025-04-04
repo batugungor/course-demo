@@ -1,0 +1,13 @@
+{% extends template('NWIRE_DEV_LEARN_MANAGEMENT_SYSTEM', 'course/_base.twig') %}
+
+{% block nav_extends %}
+    {% include template('NWIRE_DEV_LEARN_MANAGEMENT_SYSTEM', 'components/steps.twig') %}
+{% endblock %}
+
+{% block content %}
+    {{ fn('wp_enqueue_style', 'learn-management-system') }}
+    <div class="nwire-dev-learn-management-system--course-main-container pt-xxl-5 pt-3 px-4 px-xl-5 mx-auto h-100">
+        {% block main_content %}{% endblock %}
+    </div>
+{% endblock %}
+

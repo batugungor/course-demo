@@ -1,0 +1,14 @@
+<div class="container mb-3">
+    <div class="row">
+        <div class="col-lg-6 col-12 px-5 px-lg-0">
+            <div class="d-flex gap-2">
+                {% for link in links %}
+                <a href="{{ link.url }}">{{ link.label }}</a>
+                    {% if links|length > loop.index %}
+                        >
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
